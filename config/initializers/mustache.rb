@@ -3,4 +3,4 @@
 # Template Handler
 require 'mustache_rails'
 # Generator
-Rails.application.config.generators.template_engine :mustache_generator
+Rails.application.config.generators.template_engine :mustache
