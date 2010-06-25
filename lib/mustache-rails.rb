@@ -4,19 +4,9 @@ require 'mustache'
 
 class Mustache
 
-  # TODO - Think about allowing to overwrite layout methods in subclassing views
-  # http://github.com/defunkt/mustache/blob/master/lib/mustache/sinatra.rb#L79-82
-  # http://github.com/defunkt/mustache/blob/master/lib/mustache/sinatra.rb#L96-102
-
-  # Remember to use {{{yield}}} (3 mustaches) as this shouldn't be escaped.
+  # Remember to use {{{yield}}} (3 mustaches) to skip escaping HTML
   # Using {{{tag}}} will skip escaping HTML so if your mustache methods return
   # HTML, be sure to interpolate them using 3 mustaches.
-
-  # Subclass Mustache::Rails for your view files. Place view files in
-  # app/views/:controller/:action.rb. 
-  
-  # Mustache::Rails registers a TemplateHandler for ".rb" files. Templates go in
-  # app/templates/:controller/:action.format.mustache
 
   class Rails < Mustache
     attr_accessor :view
@@ -122,8 +112,7 @@ class Mustache
       end
 
       def mustache_template_file(template)
-        virtual_path = template.virtual_path.sub('alfred/views/','')
-        "#{Config.template_base_path}/#{virtual_path}.#{Config.template_extension}"
+        "#{Config.template_base_path}/#{template.virtual_path}.#{Config.template_extension}"
       end
 
     end
