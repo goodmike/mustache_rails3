@@ -9,9 +9,7 @@ app/views/:controller/:action.rb.
 Mustache::Rails registers a TemplateHandler for ".rb" files. Templates go in
 app/templates/:controller/:action.format.mustache
 
-To activate mustache templating, require this file in your Rails runtime. 
-Placing the file config/initializers/mustache.rb into your config/initializers folder
-accomplishes this.
+Be sure to add 'gem mustache' to your project's Gemfile before running any generators or starting the server.
 
 TODO - Think about allowing to overwrite layout methods in subclassing views
 http://github.com/defunkt/mustache/blob/master/lib/mustache/sinatra.rb#L79-82
