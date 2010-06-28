@@ -25,7 +25,7 @@ class Mustache
     # (2) in the shared templates path (can be configured via Config.shared_path=(value))
     #
     def partial(name)
-      partial_name = "#{name}.#{Config.template_extension}"
+      partial_name = "_#{name}.#{Config.template_extension}"
       template_dir = Pathname.new(self.class.template_file).dirname
       partial_path = File.expand_path("#{template_dir}/#{partial_name}")
       unless File.file?(partial_path)
