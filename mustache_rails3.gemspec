@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = %q{mustache_rails3}
-  s.version = "0.1.0"
+  s.version = "0.1.1"
   s.date = %q{2010-06-28}
   s.authors = ["Michael Harrison"]
   s.email = %q{mh@michaelharrison.ws}
@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/goodmike/mustache_rails3}
   s.description = %q{Mustache_rails3 is intended to add Rails 3 support to the existing mustache templating system for Ruby. It provides a template handler for Rails 3 and generators.}
   s.files = [ "readme.md", "LICENSE", "config/initializers/mustache.rb",
-              "lib/mustache_rails.rb",
+              "lib/generators/mustache.rb",
               "lib/generators/mustache/controller/controller_generator.rb",
               "lib/generators/mustache/controller/templates/view.html.mustache.erb",
               "lib/generators/mustache/controller/templates/view.rb.erb",
@@ -24,5 +24,6 @@ Gem::Specification.new do |s|
               "lib/generators/mustache/scaffold/templates/new.rb.erb",
               "lib/generators/mustache/scaffold/templates/show.html.mustache.erb",
               "lib/generators/mustache/scaffold/templates/show.rb.erb",
-              ]
+              "lib/mustache_rails.rb"
+            ]
 end

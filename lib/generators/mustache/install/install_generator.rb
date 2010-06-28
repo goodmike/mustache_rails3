@@ -7,7 +7,6 @@ class Mustache
 
       def copy_initializer_files
         copy_file "config/initializers/mustache.rb", "config/initializers/mustache.rb"
-        copy_file "lib/mustache_rails.rb", "lib/mustache_rails.rb"
       end
 
     end
