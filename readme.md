@@ -9,6 +9,8 @@ app/views/:controller/:action.rb.
 Mustache::Rails registers a TemplateHandler for ".rb" files. Templates go in
 app/templates/:controller/:action.format.mustache
 
+This is also available as a (rubygem)[http://rubygems.org/gems/mustache_rails3].
+
 I'm just getting started. This really is a low-numbered prerelease. :-)
 
 ### Instructions
