@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = %q{mustache_rails3}
-  s.version = "0.1.1"
+  s.version = "0.1.2"
   s.date = %q{2010-06-28}
   s.authors = ["Michael Harrison"]
   s.email = %q{mh@michaelharrison.ws}
