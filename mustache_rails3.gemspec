@@ -1,12 +1,12 @@
 Gem::Specification.new do |s|
   s.name = %q{mustache_rails3}
-  s.version = "0.1.2"
-  s.date = %q{2010-06-28}
+  s.version = "0.1.2.1"
+  s.date = %q{2010-08-01}
   s.authors = ["Michael Harrison"]
   s.email = %q{mh@michaelharrison.ws}
   s.summary = %q{Mustache_rails3 provides a template handler and generators for Rails 3.}
   s.homepage = %q{http://github.com/goodmike/mustache_rails3}
-  s.description = %q{Mustache_rails3 is intended to add Rails 3 support to the existing mustache templating system for Ruby. It provides a template handler for Rails 3 and generators. The source code is maintained at http://github.com/goodmike/mustache_rails3, and I welcome comments and forks.}
+  s.description = %q{Mustache_rails3 is intended to add Rails 3 support to the existing mustache templating system for Ruby. It provides a template handler for Rails 3 and generators. I strive to make the gem work with the latest beta or release candidate of Rails 3. The source code is maintained at http://github.com/goodmike/mustache_rails3, and I welcome comments and forks. I thank Jens Bissinger for his Rails 3 RC 1 patch.}
   s.files = [ "readme.md", "LICENSE", "config/initializers/mustache.rb",
               "lib/generators/mustache.rb",
               "lib/generators/mustache/controller/controller_generator.rb",
