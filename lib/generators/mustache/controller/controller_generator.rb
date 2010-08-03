@@ -30,10 +30,9 @@ class Mustache
       end
       
       protected
-
-      def handler
-        :haml
-      end
+      
+      # Methods not to be executed go here
+      
     end
   end
 end
