@@ -6,25 +6,33 @@ class Mustache
     class ScaffoldGenerator < Erb::Generators::ScaffoldGenerator
       extend TemplatePath
 
-      # TODO Layout files? snusnu claims his template engine supports layouts:
-      # http://github.com/defunkt/mustache/issues/#issue/3/comment/263445
+      # TODO Find solution for content_for :target and yield :target
+
+      def create_layout_files
+        
+        view_layouts_path     = "app/views/layouts"
+        template_layouts_path = "app/templates/layouts"
+      
+        empty_directory view_layouts_path
+        empty_directory template_layouts_path
+        
+        copy_file "views/application.rb", File.join(view_layouts_path, "application.rb")
+        copy_file "templates/application.html.mustache", File.join(template_layouts_path, "application.html.mustache")
+      end
 
       def copy_view_files
         views = available_views
         views.delete("index") if options[:singleton]
 
         views.each do |view|                  
-          template "#{view}.rb.erb", 
+          template "views/#{view}.rb.erb", 
                    File.join("app/views", controller_file_path, "#{view}.rb")
-          template "#{view}.html.mustache.erb", 
-                   File.join("app/templates", 
-                             controller_file_path, 
-                             "#{view}.html.mustache")
+          template "templates/#{view}.html.mustache.erb", 
+                   File.join("app/templates", controller_file_path, "#{view}.html.mustache")
         end
-        template "_form.html.mustache.erb", 
-                   File.join("app/templates", 
-                             controller_file_path, 
-                             "_form.html.mustache")
+        
+        template "templates/_form.html.mustache.erb", 
+                   File.join("app/templates", controller_file_path, "_form.html.mustache")
       end
       
       private

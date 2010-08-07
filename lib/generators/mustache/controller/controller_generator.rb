@@ -9,23 +9,33 @@ class Mustache
       argument :actions, :type => :array, :default => [], :banner => "action action"
 
       def create_view_files
-        model_path                  = File.join(class_path, file_name)
+        model_path             = File.join(class_path, file_name)
         
-        base_mustache_view_path     = File.join("app/views", model_path)
-        empty_directory base_mustache_view_path
+        mustache_view_path     = File.join("app/views", model_path)
+        empty_directory mustache_view_path
         
-        base_mustache_template_path = File.join("app/templates", model_path)
-        empty_directory base_mustache_template_path
+        mustache_template_path = File.join("app/templates", model_path)
+        empty_directory mustache_template_path
+        
+        view_layouts_path     = "app/views/layouts"
+        template_layouts_path = "app/templates/layouts"
+        
+        empty_directory view_layouts_path
+        empty_directory template_layouts_path
+        
+        copy_file "views/application.rb", File.join(view_layouts_path, "application.rb")
+        copy_file "templates/application.html.mustache", File.join(template_layouts_path, "application.html.mustache")
         
         actions.each do |action|
           @action  = action
-          mustache_view_path       = File.join(base_mustache_view_path,
-                                                "#{action}.rb")
-          mustache_template_path   = File.join(base_mustache_template_path,
-                                                "#{action}.html.mustache")
+          view_path     = File.join(mustache_view_path,
+                                    "#{action}.rb")
+          template_path = File.join(mustache_template_path,
+                                    "#{action}.html.mustache")
           
-          template "view.rb.erb", mustache_view_path
-          template "view.html.mustache.erb", mustache_template_path                                   
+          template  "views/view.rb.erb", view_path
+          template  "templates/view.html.mustache.erb", template_path
+          
         end
       end
       

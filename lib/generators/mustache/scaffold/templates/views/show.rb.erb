@@ -1,4 +1,4 @@
-class <%= plural_name.camelize %>::Show < Mustache::Rails
+class <%= plural_name.camelize %>::Show < Layouts::Application
   
   <% for attribute in attributes -%>
   def <%= attribute.name %>
