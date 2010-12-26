@@ -14,7 +14,7 @@ app/views/:controller/:action.rb
 
 <pre><code>#app/views/home/index.rb
 
-class Home::Index < Mustache::Rails
+class Home::Index &lt; Mustache::Rails
   def world
     'New Caprica'
   end
@@ -35,7 +35,7 @@ Layouts work much the same way, using a similar naming convention. Subclass Must
 
 <pre><code>#app/views/layouts/main.rb
 
-class Layouts::Main < Mustache::Rails
+class Layouts::Main &lt; Mustache::Rails
   def default_title
     'A Cylon fleet has jumped into orbit!'
   end
