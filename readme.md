@@ -67,6 +67,7 @@ in your project directory.
 
 * Add controller-retrofit generator to build default mustache views for existing controllers
 * Generate different fields for different attribute types
+* Add support for easy conversion of Rails::Mustache objects to JSON representations
 * Think about allowing to overwrite layout methods in subclassing views:
   http://github.com/defunkt/mustache/blob/master/lib/mustache/sinatra.rb#L79-82
   http://github.com/defunkt/mustache/blob/master/lib/mustache/sinatra.rb#L96-102
