@@ -39,12 +39,21 @@ class Mustache
     #
     # Mustache::Rails::Config.template_base_path = Rails.root.join('app', 'templates')
     module Config
+
+      def self.default!
+        @template_paths = [::Rails.root.join('app/templates')]
+      end
+
+      def self.template_paths
+        @template_paths || default!
+      end
+
       def self.template_base_path
-        @template_base_path ||= ::Rails.root.join('app', 'templates')
+        @template_paths.first
       end
 
       def self.template_base_path=(value)
-        @template_base_path = value
+        @template_paths[0] = value
       end
 
       def self.template_extension
@@ -77,7 +86,7 @@ class Mustache
       def compile(template)
         mustache_class = mustache_class_from_template(template)
         mustache_class.template_file = mustache_template_file(template)
-        
+
         <<-MUSTACHE
           mustache = ::#{mustache_class}.new
           mustache.view = self
@@ -85,15 +94,15 @@ class Mustache
           mustache.context.update(local_assigns)
           variables = controller.instance_variable_names
           variables -= %w[@template]
-      
+
           if controller.respond_to?(:protected_instance_variables)
             variables -= controller.protected_instance_variables
           end
-      
+
           variables.each do |name|
             mustache.instance_variable_set(name, controller.instance_variable_get(name))
           end
-      
+
           # Declaring an +attr_reader+ for each instance variable in the
           # Mustache::Rails subclass makes them available to your templates.
           mustache.class.class_eval do
@@ -112,7 +121,11 @@ class Mustache
       end
 
       def mustache_template_file(template)
-        "#{Config.template_base_path}/#{template.virtual_path}.#{Config.template_extension}"
+        for template_path in Config.template_paths do
+          path = ::Rails.root.join(template_path, "#{template.virtual_path}.#{Config.template_extension}")
+          return path.to_s if File.exists?(path)
+        end
+        raise ActionView::MissingTemplate.new(Config.template_paths, template.virtual_path, {}, false)
       end
 
     end
