@@ -134,3 +134,4 @@ end
 
 ::ActiveSupport::Dependencies.autoload_paths << Rails.root.join("app", "views")
 ::ActionView::Template.register_template_handler(:rb, Mustache::Rails::TemplateHandler)
+::ActionView::Template.register_template_handler(:mustache, Mustache::Rails::TemplateHandler)
