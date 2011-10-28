@@ -13,22 +13,22 @@ class Mustache
         views = available_views
         views.delete("index") if options[:singleton]
 
-        views.each do |view|                  
-          template "#{view}.rb.erb", 
+        views.each do |view|
+          template "#{view}.rb.erb",
                    File.join("app/views", controller_file_path, "#{view}.rb")
-          template "#{view}.html.mustache.erb", 
-                   File.join("app/templates", 
-                             controller_file_path, 
+          template "#{view}.html.mustache.erb",
+                   File.join("app/templates",
+                             controller_file_path,
                              "#{view}.html.mustache")
         end
-        template "_form.html.mustache.erb", 
-                   File.join("app/templates", 
-                             controller_file_path, 
+        template "_form.html.mustache.erb",
+                   File.join("app/templates",
+                             controller_file_path,
                              "_form.html.mustache")
       end
-      
+
       private
-      
+
       def available_views
         %w(index edit show new)
       end
