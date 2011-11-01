@@ -64,8 +64,9 @@ class Mustache
       end
     end
 
-    class TemplateHandler < ActionView::Template::Handler
+    class TemplateHandler
 
+      class_attribute :default_format
       self.default_format = :mustache
 
       # @return [String] its evaled in the context of the action view
@@ -118,4 +119,5 @@ class Mustache
 end
 
 ::ActiveSupport::Dependencies.autoload_paths << Rails.root.join("app", "views")
-::ActionView::Template.register_template_handler(:rb, Mustache::Rails::TemplateHandler)
+::ActionView::Template.register_template_handler(:rb, Mustache::Rails::TemplateHandler.new())
+
