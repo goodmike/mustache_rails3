@@ -66,15 +66,13 @@ class Mustache
 
     class TemplateHandler < ActionView::Template::Handler
 
-      include ActionView::Template::Handlers::Compilable
-
       self.default_format = :mustache
 
       # @return [String] its evaled in the context of the action view
       # hence the hack below
       #
       # @param [ActionView::Template]
-      def compile(template)
+      def call(template)
         mustache_class = mustache_class_from_template(template)
         mustache_class.template_file = mustache_template_file(template)
         
