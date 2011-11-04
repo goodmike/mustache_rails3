@@ -75,24 +75,24 @@ class Mustache
       # @param [ActionView::Template]
       def call(template)
         mustache_class = mustache_class_from_template(template)
-        mustache_class.template_file = mustache_template_file(template)
-        
+
         <<-MUSTACHE
+          ::#{mustache_class}.template_file = "#{Config.template_base_path}/#{template.virtual_path}.#{Config.template_extension}"
           mustache = ::#{mustache_class}.new
           mustache.view = self
           mustache[:yield] = content_for(:layout)
           mustache.context.update(local_assigns)
           variables = controller.instance_variable_names
           variables -= %w[@template]
-      
+
           if controller.respond_to?(:protected_instance_variables)
             variables -= controller.protected_instance_variables
           end
-      
+
           variables.each do |name|
             mustache.instance_variable_set(name, controller.instance_variable_get(name))
           end
-      
+
           # Declaring an +attr_reader+ for each instance variable in the
           # Mustache::Rails subclass makes them available to your templates.
           mustache.class.class_eval do
